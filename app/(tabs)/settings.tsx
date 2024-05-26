@@ -6,6 +6,7 @@ import { ExternalLink } from '@/components/ExternalLink'
 import ParallaxScrollView from '@/components/ParallaxScrollView'
 import { ThemedText } from '@/components/ThemedText'
 import { ThemedView } from '@/components/ThemedView'
+import DropdownComponent from '@/components/Dropdown'
 
 export default function TabTwoScreen() {
   return (
@@ -18,9 +19,11 @@ export default function TabTwoScreen() {
       <ThemedView style={styles.titleContainer}>
         <ThemedText type='title'>Explore</ThemedText>
       </ThemedView>
+
       <ThemedText>
         This app includes example code to help you get started.
       </ThemedText>
+      <DropdownComponent />
       <Collapsible title='File-based routing'>
         <ThemedText>
           This app has two screens:{' '}
@@ -28,6 +31,7 @@ export default function TabTwoScreen() {
           and{' '}
           <ThemedText type='defaultSemiBold'>app/(tabs)/explore.tsx</ThemedText>
         </ThemedText>
+
         <ThemedText>
           The layout file in{' '}
           <ThemedText type='defaultSemiBold'>app/(tabs)/_layout.tsx</ThemedText>{' '}
