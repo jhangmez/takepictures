@@ -6,7 +6,6 @@ import { ExternalLink } from '@/components/ExternalLink'
 import ParallaxScrollView from '@/components/ParallaxScrollView'
 import { ThemedText } from '@/components/ThemedText'
 import { ThemedView } from '@/components/ThemedView'
-import DropdownComponent from '@/components/Dropdown'
 
 export default function TabTwoScreen() {
   return (
@@ -23,7 +22,7 @@ export default function TabTwoScreen() {
       <ThemedText>
         This app includes example code to help you get started.
       </ThemedText>
-      <DropdownComponent />
+
       <Collapsible title='File-based routing'>
         <ThemedText>
           This app has two screens:{' '}

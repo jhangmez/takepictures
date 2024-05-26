@@ -15,7 +15,7 @@ import { ThemedText } from '@/components/ThemedText'
 import { ThemedView } from '@/components/ThemedView'
 import * as FileSystem from 'expo-file-system'
 import * as MediaLibrary from 'expo-media-library'
-import { AssetRef } from 'expo-media-library'
+import DropdownComponent from '@/components/Dropdown'
 
 export default function HomeScreen() {
   const [facing, setFacing] = useState<CameraType>('back')
@@ -99,25 +99,17 @@ export default function HomeScreen() {
           to: newFileUri
         })
         setImage(photo.uri)
+        // MediaLibrary.saveToLibraryAsync(newFileUri)
         try {
-          MediaLibrary.saveToLibraryAsync(newFileUri)
-          // const albumName = 'albumNuevo1'
+          const albumName = 'albumNuevo1'
+          let album = await MediaLibrary.getAlbumAsync(albumName)
+          const asset = await MediaLibrary.createAssetAsync(newFileUri)
 
-          // let album = await MediaLibrary.getAlbumAsync(albumName)
-
-          // if (!album) {
-          //   try {
-          //     album = await MediaLibrary.createAlbumAsync(albumName, newFileUri)
-          //     console.log('Album created:', album)
-          //     alert(`Album created: ${album}`)
-          //   } catch (error) {
-          //     console.error('Error creating album:', error)
-          //     alert('An error occurred while creating the album.')
-          //   }
-          // } else {
-          //   console.log('Album already exists:', album)
-          //   alert(`Album already exists: ${album}`)
-          // }
+          if (!album) {
+            album = await MediaLibrary.createAlbumAsync(albumName, asset, false)
+          } else {
+            await MediaLibrary.addAssetsToAlbumAsync([asset], album.id, false)
+          }
         } catch (error) {
           console.error('Error getting album:', error)
           alert('An error occurred while accessing the album.')
@@ -159,6 +151,8 @@ export default function HomeScreen() {
         </CameraView>
         <Button title={`Flash:${flash}`} onPress={toggleFlash} />
         <Button title='Take Picture' onPress={takePicture} />
+        <DropdownComponent />
+        <DropdownComponent />
         {image && <Image source={{ uri: image }} style={styles.image} />}
       </View>
     </ParallaxScrollView>
