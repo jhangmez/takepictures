@@ -12,8 +12,13 @@ import { Button, Text, TouchableOpacity, View } from 'react-native'
 import ParallaxScrollView from '@/components/ParallaxScrollView'
 import * as FileSystem from 'expo-file-system'
 import * as MediaLibrary from 'expo-media-library'
-import DropdownComponent from '@/components/Dropdown'
+import Dropdown from '@/components/dropdown'
+import { countries } from '@/utils/countries'
 
+const formattedCountries = countries.map((c) => ({
+  value: c.label,
+  label: `${c.flag} ${c.label}`
+}))
 export default function HomeScreen() {
   const [facing, setFacing] = useState<CameraType>('back')
   const [permission, requestPermission] = useCameraPermissions()
@@ -148,8 +153,20 @@ export default function HomeScreen() {
         </CameraView>
         <Button title={`Flash:${flash}`} onPress={toggleFlash} />
         <Button title='Take Picture' onPress={takePicture} />
-        <DropdownComponent />
-        <DropdownComponent />
+        <Dropdown
+          data={formattedCountries}
+          onChange={console.log}
+          placeholder='Select country'
+        />
+        <Dropdown
+          data={[
+            { value: '🐈', label: '🐈 un Gato' },
+            { value: '🦮', label: '🦮 un Perro' },
+            { value: '🐍', label: '🐍 una serpiente' }
+          ]}
+          onChange={console.log}
+          placeholder='Select pet'
+        />
         {image && <Image source={{ uri: image }} style={styles.image} />}
       </View>
     </ParallaxScrollView>
