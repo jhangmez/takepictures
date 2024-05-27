@@ -1,4 +1,4 @@
-import { Image, StyleSheet, Platform } from 'react-native'
+import { Image, StyleSheet } from 'react-native'
 import {
   CameraView,
   useCameraPermissions,
@@ -10,9 +10,6 @@ import {
 import { useState, useRef } from 'react'
 import { Button, Text, TouchableOpacity, View } from 'react-native'
 import ParallaxScrollView from '@/components/ParallaxScrollView'
-import { HelloWave } from '@/components/HelloWave'
-import { ThemedText } from '@/components/ThemedText'
-import { ThemedView } from '@/components/ThemedView'
 import * as FileSystem from 'expo-file-system'
 import * as MediaLibrary from 'expo-media-library'
 import DropdownComponent from '@/components/Dropdown'
@@ -59,7 +56,7 @@ export default function HomeScreen() {
   }
 
   const handleCameraReady = () => {
-    // console.log('La cámara está lista y lista para tomar fotos.')
+    console.log('La cámara está lista y lista para tomar fotos.')
     // Aquí puedes agregar cualquier lógica adicional que necesites ejecutar
   }
 
